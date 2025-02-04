@@ -11,7 +11,7 @@
     Number of years
   </dt>
   <dd>
-    <%= params.fetch("user_years").to_f %>
+    <%= params.fetch("user_years").to_i %>
   </dd>
   <dt>
     Principal
@@ -23,7 +23,7 @@
     Payment
   </dt>
   <dd>
-    <%= ((params.fetch("user_pv").to_f * params.fetch("user_apr").to_f * 0.01) / (1.0-(1.0+params.fetch("user_apr").to_f * 0.01)**((-1.0) * params.fetch("user_years").to_f))/12).to_fs(:currency, {:precision => 2}) %>
+    <%= ((params.fetch("user_pv").to_f * params.fetch("user_apr").to_f * 0.01 / 12) / (1.0-(1.0+params.fetch("user_apr").to_f * 0.01 / 12)**((-12.0) * params.fetch("user_years").to_f))).to_fs(:currency, {:precision => 2}) %>
   </dd>
 </dl>
 
